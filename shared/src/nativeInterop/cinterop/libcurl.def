@@ -1,0 +1,28 @@
+headers = lib.h stdint.h
+#OpenGL/gl.h OpenGL/glu.h GLUT/glut.h
+#headerFilter = simple.h
+#compilerOpts = -framework OpenGL -framework GLUT
+#linkerOpts = -lsimple
+#compilerOpts.linux = -I/usr/include -I/usr/include/x86_64-linux-gnu
+#linkerOpts.osx = -L/opt/local/lib -L/usr/local/opt/curl/lib -lcurl
+#linkerOpts.linux = -L/usr/lib/x86_64-linux-gnu -lcurl
+
+#staticLibraries = libsimple.a
+#libraryPaths =
+---
+void pass_string(char* str) {
+}
+
+char* return_string() {
+  return "C string";
+}
+
+int copy_string(char* str, int size) {
+  *str++ = 'C';
+  *str++ = ' ';
+  *str++ = 'K';
+  *str++ = '/';
+  *str++ = 'N';
+  *str++ = 0;
+  return 0;
+}

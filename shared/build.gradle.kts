@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -10,7 +11,43 @@ kotlin {
     wasmJs {
         browser()
     }
-
+//    val hostOs = System.getProperty("os.name")
+//    val isArm64 = System.getProperty("os.arch") == "aarch64"
+//    val isMingwX64 = hostOs.startsWith("Windows")
+//    val nativeTarget = when {
+//        hostOs == "Mac OS X" && isArm64 -> macosArm64("native")
+//        hostOs == "Mac OS X" && !isArm64 -> macosX64("native")
+//        hostOs == "Linux" && isArm64 -> linuxArm64("native")
+//        hostOs == "Linux" && !isArm64 -> linuxX64("native")
+//        isMingwX64 -> mingwX64("native")
+//        else -> throw GradleException("Host OS is not supported in Kotlin/Native.")
+//    }
+//
+//    nativeTarget.apply {
+//        compilations.getByName("main") {
+//            cinterops {
+//                val libcurl by creating {
+//                    defFile(project.file("src/nativeInterop/cinterop/libcurl.def"))
+//                    packageName("com.spacecraft.kmp")
+//                    compilerOpts("-I/path")
+//                    includeDirs.allHeaders("path")
+//                }
+//            }
+//        }
+//        binaries {
+//            executable {
+//                entryPoint = "main"
+//            }
+//        }
+//    }
+    //指定main函数入口
+    fun KotlinNativeTarget.config() {
+        binaries {
+            executable {
+                entryPoint = "main"
+            }
+        }
+    }
     androidTarget {
         compilations.all {
             kotlinOptions {
@@ -18,11 +55,26 @@ kotlin {
             }
         }
     }
-
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-//    linuxX64() // on Linux
+    linuxX64() {
+        val main by compilations.getting {
+            cinterops {
+                val libcurl by creating {
+                    defFile(project.file("src/nativeInterop/cinterop/libcurl.def"))
+//                    packageName("com.spacecraft.kmp")
+                    compilerOpts("-I/src/nativeInterop/cinterop/")
+                    includeDirs.allHeaders("src/nativeInterop/cinterop/")
+                }
+            }
+        }
+        binaries {
+            executable {
+                entryPoint = "main"
+            }
+        }
+    }
 //    mingwX64() // on Windows
 //    macosX64() { // on macOS
 //        binaries {
@@ -30,12 +82,23 @@ kotlin {
 //        }
 //    }
     androidNativeArm64()
-    androidNativeArm32{
+    androidNativeArm32 {
         binaries {
             sharedLib("aa", listOf(RELEASE))
         }
+//        compilations.getByName("main") {
+//            cinterops {
+//                val libcurl by creating {
+//                    defFile(project.file("src/nativeInterop/cinterop/libcurl.def"))
+//                    packageName("com.spacecraft.kmp")
+//                    compilerOpts("-I/path")
+//                    includeDirs.allHeaders("path")
+//                }
+//            }
+//        }
     }
     jvm()
+
     sourceSets {
         commonMain.dependencies {
             // put your Multiplatform dependencies here
@@ -43,7 +106,7 @@ kotlin {
         jvmMain.dependencies {
 
         }
-        nativeMain.dependencies {  }
+        nativeMain.dependencies { }
 
     }
 
