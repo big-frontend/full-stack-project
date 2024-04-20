@@ -8,9 +8,9 @@ plugins {
 kotlin {
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-       browser()
+        browser()
     }
-    
+
     androidTarget {
         compilations.all {
             kotlinOptions {
@@ -18,18 +18,35 @@ kotlin {
             }
         }
     }
-    
+
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-    
+//    linuxX64() // on Linux
+//    mingwX64() // on Windows
+//    macosX64() { // on macOS
+//        binaries {
+//            executable()
+//        }
+//    }
+    androidNativeArm64()
+    androidNativeArm32{
+        binaries {
+            sharedLib("aa", listOf(RELEASE))
+        }
+    }
     jvm()
-    
     sourceSets {
         commonMain.dependencies {
             // put your Multiplatform dependencies here
         }
+        jvmMain.dependencies {
+
+        }
+        nativeMain.dependencies {  }
+
     }
+
 }
 
 android {
@@ -38,4 +55,8 @@ android {
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
+}
+tasks.withType<Wrapper> {
+    gradleVersion = "8.1.1"
+    distributionType = Wrapper.DistributionType.BIN
 }
