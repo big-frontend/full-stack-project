@@ -12,11 +12,15 @@ androidx-material = "1.10.0"
 androidx-test-junit = "1.1.5"
 compose = "1.5.4"
 compose-compiler = "1.5.6"
-compose-plugin = "1.6.0-alpha01"
+compose-plugin = "1.6.10"
 junit = "4.13.2"
 kotlin = "1.9.21"
 ktor = "2.3.7"
 logback = "1.4.14"
+ksp = "2.0.0-1.0.21"
+androidTools = "31.4.0"
+electrolytejBasePlugin = "1.2.1"
+javassist = " 3.28.0-GA"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -38,6 +42,15 @@ logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
 ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
 ktor-server-tests = { module = "io.ktor:ktor-server-tests-jvm", version.ref = "ktor" }
+android-gradleplugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
+electrolytej-baseplugin = { group = "io.github.jamesfchen", name = "base-plugin", version.ref = "electrolytejBasePlugin" }
+
+javassist = { group = "org.javassist", name = "javassist", version.ref = "javassist" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

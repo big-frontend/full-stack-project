@@ -64,7 +64,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.electrolytej.f"
+    namespace = "org.electrolytej.pisces"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -72,7 +72,7 @@ android {
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        applicationId = "org.electrolytej.f"
+        applicationId = "org.electrolytej.pisces"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -95,6 +95,21 @@ android {
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
     }
+    packagingOptions {
+        exclude("META-INF/proguard/coroutines.pro")
+        pickFirst("lib/armeabi-v7a/libc++_shared.so")
+        pickFirst("lib/arm64-v8a/libc++_shared.so")
+        pickFirst("lib/x86/libc++_shared.so")
+        pickFirst("lib/x86_64/libc++_shared.so")
+        pickFirst("lib/armeabi-v7a/libfbjni.so")
+        pickFirst("lib/arm64-v8a/libfbjni.so")
+        pickFirst("lib/x86/libfbjni.so")
+        pickFirst("lib/x86_64/libfbjni.so")
+        pickFirst("lib/armeabi-v7a/libicu_common.so")
+        pickFirst("lib/arm64-v8a/libicu_common.so")
+        pickFirst("lib/x86/libicu_common.so")
+        pickFirst("lib/x86_64/libicu_common.so")
+    }
 }
 
 compose.desktop {
@@ -103,7 +118,7 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "org.electrolytej.f"
+            packageName = "org.electrolytej.pisces"
             packageVersion = "1.0.0"
         }
     }

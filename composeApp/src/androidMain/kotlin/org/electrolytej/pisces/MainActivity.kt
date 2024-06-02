@@ -1,4 +1,4 @@
-package org.electrolytej.f
+package org.electrolytej.pisces
 
 import App
 import android.os.Bundle
