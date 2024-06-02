@@ -9,7 +9,7 @@ plugins {
 //    `kotlin-dsl`
 }
 
-val groupId :String by project
+val groupId: String by project
 gradlePlugin {
     plugins {
         create("pisces-plugin") {
@@ -43,7 +43,9 @@ dependencies {
                 .getModule("gradle-tooling-api-builders")
                 .classpath
                 .asFiles
-                .first()))
+                .first()
+        )
+    )
 }
 
 java {
