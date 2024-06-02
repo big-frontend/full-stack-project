@@ -2,7 +2,6 @@ rootProject.name = "pisces-kmp"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
-
     repositories {
         mavenLocal()
         maven { url = uri("https://s01.oss.sonatype.org/content/repositories/public") }
@@ -45,7 +44,7 @@ dependencyResolutionManagement {
     }
 }
 
+includeBuild("packages/pisces-gradle-plugin")
 include(":server")
-include(":composeApp")
-include(":shared")
-includeBuild("packages/pisces-plugin")
+include(":packages:pisces")
+include(":packages:sample")

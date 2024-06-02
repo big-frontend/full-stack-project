@@ -4,15 +4,15 @@ plugins {
     application
 }
 
-group = "org.electrolytej.f"
+group = "org.electrolytej.pisces"
 version = "1.0.0"
 application {
-    mainClass.set("org.electrolytej.f.ApplicationKt")
+    mainClass.set("org.electrolytej.pisces.ApplicationKt")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=${extra["development"] ?: "false"}")
 }
 
 dependencies {
-    implementation(projects.shared)
+    implementation(projects.packages.pisces)
     implementation(libs.logback)
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.netty)
