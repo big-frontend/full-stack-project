@@ -32,7 +32,7 @@ dependencies {
     compileOnly(libs.compose.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
-//    implementation(libs.javassist)
+    implementation(libs.javassist)
     implementation(libs.kotlin.stdlib)
     implementation(libs.electrolytej.baseplugin)
     implementation("com.squareup.okhttp3:okhttp:3.14.0")

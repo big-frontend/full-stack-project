@@ -16,3 +16,5 @@ captures
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
 .kotlin/
+packages/app/desktopApp/cache
+packages/app/desktopApp/kcef-bundle
