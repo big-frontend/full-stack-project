@@ -9,6 +9,13 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
 //    `kotlin-dsl`
 }
+sourceSets {
+    main {
+        java {
+            setSrcDirs(listOf("../pisces-annotation/src/main/kotlin"))
+        }
+    }
+}
 
 group = "io.github.electrolytej"
 version = "1.0.0"
