@@ -46,5 +46,11 @@ dependencyResolutionManagement {
 
 includeBuild("packages/pisces-gradle-plugin")
 include(":server")
+include(":packages:webview")
+include(":packages:pisces-annotation")
 include(":packages:pisces")
+include(":packages:app:browser")
+include(":packages:app:android")
+include(":packages:app:ios")
+include(":packages:app:desktop")
 include(":packages:sample")

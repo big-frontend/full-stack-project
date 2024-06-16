@@ -5,29 +5,28 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     id("java-gradle-plugin")
-    alias(libs.plugins.kotlinJvm)
+    id("com.gradle.plugin-publish") version "1.2.1"
+    alias(libs.plugins.kotlin.jvm)
 //    `kotlin-dsl`
 }
 
-val groupId: String by project
+group = "io.github.electrolytej"
+version = "1.0.0"
 gradlePlugin {
     plugins {
         create("pisces-gradle-plugin") {
-            id = "${groupId}.pisces-gradle-plugin"
+            id = "${group}.pisces-plugin"
             implementationClass = "com.electrolytej.pisces.PiscesPlugin"
             displayName = "pisces-gradle-plugin"
             description = "pisces-gradle-plugin"
         }
     }
 }
-group = "${groupId}.pisces-gradle-plugin"
-description = "pisces-gradle-plugin"
-version = "1.0.0"
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     testImplementation(libs.junit)
     compileOnly(gradleApi())
-    compileOnly(libs.android.gradleplugin)
+    compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.android.tools.common)
     compileOnly(libs.compose.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
@@ -64,38 +63,4 @@ tasks.withType<Test>().configureEach {
         showCauses = true
         showStackTraces = true
     }
-
 }
-//plugins {
-//    id "com.gradle.plugin-publish" version "0.15.0"
-//}
-////发布到远程gradle plugin portal，获得approval超级慢
-//pluginBundle {
-//    vcsUrl = 'https://github.com/JamesfChen/pisces'
-//    website = "https://github.com/JamesfChen/pisces"
-//    description = "pisces-gradle-plugin"
-//    tags = ['pisces']
-//    plugins {
-//        rnbundlePlugin {
-//            displayName = 'rnbundle-plugin'
-//            tags = ['pisces']
-//            version '1.0.0'
-//        }
-//    }
-//    mavenCoordinates {
-//        groupId = rootProject.groupId
-//        artifactId = 'rnbundle-plugin'
-//        version = "1.0.0"
-//    }
-//    mavenCoordinates {
-//        groupId = rootProject.groupId
-//        artifactId = 'h5bundle-plugin'
-//        version = "1.0.0"
-//    }
-//    mavenCoordinates {
-//        groupId = rootProject.groupId
-//        artifactId = 'flutterbundle-plugin'
-//        artifactId = 'api-plugin'
-//        version = "1.0.0"
-//    }
-//}
